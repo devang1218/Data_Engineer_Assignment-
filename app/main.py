@@ -3,18 +3,19 @@ import pandas as pd
 import sqlite3
 
 # first method using sql query 
-# I have used separate file(dataabse.py) to connect to db and get the result from it into the python code
-db = database()
-
-cnx = sqlite3.connect('XYZ')
+path_to_db = "D:\projects\\app\Data Engineer - Assignment Database@eastVantage.db"
+db = database(path = path_to_db)
 
 result_sql = db.get_targeted_customers()
+
+# storing the final result using sql in csv (;) separated files in output folder 
 result_sql.to_csv(path_or_buf='../output/sql_query_output.csv',sep=';', index=False)
 
-
 # Second method using Pandas
+cnx = sqlite3.connect(path_to_db)
+
 df_item = pd.read_sql_query("SELECT * FROM Items", cnx)
-df_customer = pd.read_sql_query("SELECT * FROM Customer", cnx)
+df_customer = pd.read_sql_query("SELECT * FROM Customers", cnx)
 df_orders = pd.read_sql_query("SELECT * FROM Orders", cnx)
 df_sales = pd.read_sql_query("SELECT * FROM Sales", cnx)
 
@@ -39,4 +40,5 @@ result_df = df[['customer_id', 'age', 'item_name', 'Quantity']].rename(columns={
     'quantity': 'Quantity'
 })
 
+# storing the final result using pandas in csv (;) separated files in output folder 
 result_df.to_csv(path_or_buf='../output/pandas_query_output.csv',sep=';', index=False)
