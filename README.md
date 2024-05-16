@@ -1,4 +1,6 @@
-**Assignment**
+**UPDATE: I've developed a TEXT_TO_SQL repository (https://github.com/devang1218/TEXT_TO_SQL) that leverages natural language processing to translate human language into SQL queries. It utilizes llm (Gemini-pro) to generate these queries, which are then executed in the backend to deliver the intended results.**
+
+<h1>Assignment</h1>
 
 Scenario:
 
